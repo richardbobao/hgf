@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Boletim Escolar Online</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <header>
+        <div class="header-container">
+            <img src="imagens/logo.png" alt="Logo da Escola" class="logo">
+            <h1>Sistema de Boletim Escolar</h1>
+        </div>
+        <nav>
+            <ul>
+                <li><a href="#dados">Aluno</a></li>
+                <li><a href="#boletim">Notas</a></li>
+                <li><a href="#calculadora">Calculadora</a></li>
+                <li><a href="#avisos">Avisos</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <!-- Cards de Resumo -->
+        <section class="cards-container" aria-label="Resumo Geral">
+            <div class="card">
+                <h3>📚 DISCIPLINAS</h3>
+                <p id="card-disciplinas">08</p>
+            </div>
+            <div class="card">
+                <h3>📊 MÉDIA GERAL</h3>
+                <p id="card-media">8,2</p>
+            </div>
+            <div class="card">
+                <h3>📅 FREQUÊNCIA</h3>
+                <p id="card-frequencia">92%</p>
+            </div>
+            <div class="card">
+                <h3>✅ SITUAÇÃO</h3>
+                <p id="card-situacao" class="status-aprovado">APROVADO</p>
+            </div>
+        </section>
+
+        <!-- Dados do Aluno -->
+        <section id="dados" class="aluno-info">
+            <h2>👤 Dados do Aluno</h2>
+            <article class="info-grid">
+                <p><strong>ALUNO:</strong> João da Silva</p>
+                <p><strong>MATRÍCULA:</strong> 20260025</p>
+                <p><strong>TURMA:</strong> 2º Ano J</p>
+                <p><strong>CURSO:</strong> Desenvolvimento de Sistemas</p>
+                <p><strong>ANO:</strong> 2026</p>
+            </article>
+        </section>
+
+        <!-- Painel de Ações / Botões -->
+        <section class="acoes-container">
+            <button type="button" class="btn" onclick="consultarNotas()">Consultar Notas</button>
+            <button type="button" class="btn" onclick="consultarFaltas()">Consultar Faltas</button>
+            <button type="button" class="btn" onclick="rolarParaCalculadora()">Calcular Média</button>
+            <button type="button" class="btn btn-imprimir" onclick="imprimirBoletim()">Imprimir Boletim</button>
+            <button type="button" class="btn btn-limpar" onclick="limparCampos()">Limpar</button>
+            <button type="button" class="btn btn-voltar" onclick="voltarTopo()">Voltar ao Topo</button>
+        </section>
+
+        <!-- Tabela de Notas -->
+        <section id="boletim" class="tabela-section">
+            <h2>📊 Tabela de Notas</h2>
+            <div class="tabela-responsive">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Disciplina</th>
+                            <th>1º Bim.</th>
+                            <th>2º Bim.</th>
+                            <th>3º Bim.</th>
+                            <th>Média</th>
+                            <th>Situação</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr><td>Português</td><td>8,0</td><td>7,5</td><td>9,0</td><td>8,2</td><td class="status-aprovado">Aprovado</td></tr>
+                        <tr><td>Matemática</td><td>6,0</td><td>7,0</td><td>8,0</td><td>7,0</td><td class="status-aprovado">Aprovado</td></tr>
+                        <tr><td>Programação</td><td>9,0</td><td>8,5</td><td>9,5</td><td>9,0</td><td class="status-aprovado">Aprovado</td></tr>
+                        <tr><td>História</td><td>7,5</td><td>8,0</td><td>8,5</td><td>8,0</td><td class="status-aprovado">Aprovado</td></tr>
+                        <tr><td>Geografia</td><td>8,0</td><td>8,0</td><td>8,0</td><td>8,0</td><td class="status-aprovado">Aprovado</td></tr>
+                        <tr><td>Física</td><td>5,0</td><td>6,0</td><td>5,5</td><td>5,5</td><td class="status-recuperacao">Recuperação</td></tr>
+                        <tr><td>Química</td><td>4,0</td><td>4,5</td><td>3,5</td><td>4,0</td><td class="status-reprovado">Reprovado</td></tr>
+                        <tr><td>Inglês</td><td>9,5</td><td>9,0</td><td>10,0</td><td>9,5</td><td class="status-aprovado">Aprovado</td></tr>
+                    </tbody>
+                </table>
+            </div>
+        </section>
+
+        <!-- Formulário de Cálculo -->
+        <section id="calculadora" class="form-section">
+            <h2>📝 Simular Média de Disciplina</h2>
+            <form id="form-media">
+                <div class="form-group">
+                    <label for="nome-aluno">Nome:</label>
+                    <input type="text" id="nome-aluno" value="João da Silva" required>
+                </div>
+                <div class="form-group">
+                    <label for="matricula-aluno">Matrícula:</label>
+                    <input type="text" id="matricula-aluno" value="20260025" required>
+                </div>
+                <div class="form-group">
+                    <label for="disciplina">Disciplina:</label>
+                    <input type="text" id="disciplina" placeholder="Ex: Algoritmos" required>
+                </div>
+                <div class="form-group-inline">
+                    <div>
+                        <label for="nota1">Nota 1:</label>
+                        <input type="number" id="nota1" step="0.1" min="0" max="10" required>
+                    </div>
+                    <div>
+                        <label for="nota2">Nota 2:</label>
+                        <input type="number" id="nota2" step="0.1" min="0" max="10" required>
+                    </div>
+                    <div>
+                        <label for="nota3">Nota 3:</label>
+                        <input type="number" id="nota3" step="0.1" min="0" max="10" required>
+                    </div>
+                </div>
+                
+                <div class="form-group-inline">
+                    <div>
+                        <label for="aulas-totais">Total de Aulas:</label>
+                        <input type="number" id="aulas-totais" value="100" min="1" required>
+                    </div>
+                    <div>
+                        <label for="presencas">Presenças:</label>
+                        <input type="number" id="presencas" value="92" min="0" required>
+                    </div>
+                </div>
+
+                <button type="button" class="btn btn-calcular" onclick="calcularResultado()">CALCULAR RESULTADO</button>
+            </form>
+
+            <div id="resultado-calculo" class="resultado-box hidden">
+                <h3>Resultado da Consulta</h3>
+                <p><strong>Média:</strong> <span id="res-media">0.0</span></p>
+                <p><strong>Situação Acadêmica:</strong> <span id="res-situacao">-</span></p>
+                <p><strong>Frequência:</strong> <span id="res-frequencia">0%</span> (<span id="res-situacao-freq">-</span>)</p>
+            </div>
+        </section>
+
+        <!-- Área de Avisos -->
+        <aside id="avisos" class="avisos-section">
+            <h2>📢 Área de Avisos</h2>
+            <article class="aviso-card">
+                <p>📢 Resultado das avaliações do 3º trimestre já disponível.</p>
+            </article>
+            <article class="aviso-card">
+                <p>📅 Reunião de pais e mestres: 28/08 às 19h.</p>
+            </article>
+            <article class="aviso-card">
+                <p>📚 Aulas de recuperação: consultar calendário no portal escolar.</p>
+            </article>
+        </aside>
+    </main>
+
+    <footer>
+        <p>&copy; 2026 Sistema Escolar - Todos os direitos reservados.</p>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>
